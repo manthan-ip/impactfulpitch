@@ -1,22 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import StyledButton from '../../components/StyledButton';
 
 // Template Card Component
 function TemplateCard({ name, price, image }) {
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-      <div className="p-4 bg-gray-50 border-b">
-        <img src={image} alt={`${name} template`} className="w-full rounded" />
+    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <div className="h-48 relative overflow-hidden">
+        <img 
+          src={image || "https://via.placeholder.com/300x150/f3f4f6/a3bffa?text=Template"} 
+          alt={name} 
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+        />
+        {price === "Free" && (
+          <div className="absolute top-4 right-4 bg-blue-600 text-white text-xs px-2 py-1 rounded-full">Free</div>
+        )}
       </div>
       <div className="p-4">
-        <div className="flex justify-between items-center mb-2">
-          <h3 className="font-bold">{name}</h3>
-          <span className="text-gray-500 text-sm">${price}</span>
-        </div>
-        <div className="flex space-x-2 text-xs text-gray-500">
-          <span>PDF</span>
-          <span>•</span>
-          <span>PPTX</span>
+        <h3 className="font-semibold text-gray-900 mb-1">{name}</h3>
+        <div className="flex justify-between items-center">
+          <span className="text-sm text-gray-600">{price === "Free" ? "Free Template" : price}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+          </svg>
         </div>
       </div>
     </div>
@@ -49,8 +55,14 @@ export default function HomeSection6() {
   ];
 
   return (
-    <section className="py-24 px-8 bg-gradient-to-r from-blue-100 via-purple-50 to-blue-50">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-16 pt-8 pb-24 px-8 bg-gradient-to-b from-blue-100 via-indigo-100 to-purple-100 relative">
+      {/* Subtle texture overlay for continuity */}
+      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+')]"></div>
+      
+      {/* Blend element to connect with next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-purple-100 -mb-1"></div>
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header - AI Tool */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center px-4 py-1 mb-4 rounded-full bg-gray-100 text-gray-700 text-sm">
@@ -152,9 +164,14 @@ export default function HomeSection6() {
         <div className="mb-16">
           <div className="flex justify-between items-center mb-8">
             <h3 className="text-xl font-bold">Free Templates</h3>
-            <Link to="/templates" className="text-sm text-gray-600 hover:text-gray-900 transition-colors px-4 py-2 border border-gray-300 rounded-full">
+            <StyledButton 
+              to="/templates" 
+              variant="outline"
+              size="sm"
+              className="text-gray-600 hover:text-gray-900"
+            >
               Browse all
-            </Link>
+            </StyledButton>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -171,15 +188,17 @@ export default function HomeSection6() {
 
         {/* Discover Now CTA */}
         <div className="text-center">
-          <Link 
+          <StyledButton 
             to="/ai-builder" 
-            className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-gray-900 text-white hover:bg-black transition-all"
+            variant="primary"
+            size="lg"
+            className="bg-gray-900 hover:bg-black"
           >
             Discover Now
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
-          </Link>
+          </StyledButton>
         </div>
       </div>
     </section>

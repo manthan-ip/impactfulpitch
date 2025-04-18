@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
+import StyledButton from '../../components/StyledButton';
 
 // FAQ Item component with collapsible functionality
 const FAQItem = ({ question, isOpen, toggleOpen }) => {
@@ -43,19 +44,23 @@ export default function HomeSection9() {
     };
 
     return (
-        <section className="py-20 px-4 md:px-8 bg-gray-900">
-            <div className="max-w-3xl mx-auto">
+        <section className="py-16 pt-8 px-8 bg-gradient-to-b from-gray-800 to-gray-900 relative">
+            {/* Dark texture overlay */}
+            <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMzMzMiPjwvcmVjdD4KPC9zdmc+')]"></div>
+            
+            {/* Gradient overlay for added depth */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-indigo-900/10 to-purple-900/10"></div>
+            
+            <div className="max-w-3xl mx-auto relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <div className="inline-block bg-gray-800 rounded-full px-6 py-2 mb-6">
-                        <span className="flex items-center text-gray-400 text-sm font-medium">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            FAQS
-                        </span>
+                    <div className="inline-flex items-center justify-center px-4 py-1 mb-4 rounded-full bg-gray-800 text-gray-300 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        FAQS
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+                    <h2 className="text-4xl font-bold text-white mb-6">Frequently Asked Questions</h2>
                     <p className="text-gray-400 max-w-2xl mx-auto">
                         Find questions and answers related to the design system, purchase, updates, and support.
                     </p>
@@ -75,12 +80,17 @@ export default function HomeSection9() {
 
                 {/* See All Button */}
                 <div className="text-center">
-                    <a href="/faqs" className="inline-flex items-center bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                    <StyledButton 
+                        href="/faqs" 
+                        variant="secondary"
+                        size="lg"
+                        className="bg-gray-800 hover:bg-gray-700 text-white"
+                    >
                         See All FAQs
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
-                    </a>
+                    </StyledButton>
                 </div>
 
                 {/* Contact */}

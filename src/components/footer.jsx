@@ -1,69 +1,226 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from "react-router-dom";
+import logo from "../assets/logo.svg";
+import StyledButton from './StyledButton';
 
 export default function Footer() {
+    const [isVisible, setIsVisible] = useState(false);
+    const [activeInput, setActiveInput] = useState(false);
+    const [email, setEmail] = useState('');
+    const [showThanks, setShowThanks] = useState(false);
+    const footerRef = useRef(null);
+    
+    // Animation to reveal footer when it comes into view
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.unobserve(entry.target);
+                }
+            },
+            { threshold: 0.1 }
+        );
+        
+        if (footerRef.current) {
+            observer.observe(footerRef.current);
+        }
+        
+        return () => {
+            if (footerRef.current) {
+                observer.unobserve(footerRef.current);
+            }
+        };
+    }, []);
+    
+    // Handle newsletter subscription
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        if (email && email.includes('@')) {
+            setShowThanks(true);
+            setEmail('');
+            setTimeout(() => setShowThanks(false), 5000);
+        }
+    };
+    
     return (
-        <footer className="bg-gray-900 py-16 px-4 md:px-8 border-t border-gray-800">
-            <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-                    {/* Logo and brand */}
-                    <div className="col-span-1">
-                        <h2 className="text-white text-2xl font-bold mb-6">Impactful Pitch</h2>
-                    </div>
-
-                    {/* Company links */}
-                    <div className="col-span-1">
-                        <ul className="space-y-4">
-                            <li><a href="/company" className="text-gray-400 hover:text-white transition-colors">Company</a></li>
-                            <li><a href="/docs" className="text-gray-400 hover:text-white transition-colors">Docs</a></li>
-                            <li><a href="/products" className="text-gray-400 hover:text-white transition-colors">Products</a></li>
-                            <li><a href="/changelog" className="text-gray-400 hover:text-white transition-colors">Changelog</a></li>
-                            <li><a href="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-                            <li><a href="/careers" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
-                            <li><a href="https://twitter.com/impactfulpitch" className="text-gray-400 hover:text-white transition-colors">Twitter</a></li>
-                            <li><a href="https://linkedin.com/company/impactfulpitch" className="text-gray-400 hover:text-white transition-colors">Linkedin</a></li>
-                        </ul>
-                    </div>
-
-                    {/* Legal links */}
-                    <div className="col-span-1">
-                        <ul className="space-y-4">
-                            <li><a href="/legal" className="text-gray-400 hover:text-white transition-colors">Legal</a></li>
-                            <li><a href="/status" className="text-gray-400 hover:text-white transition-colors">Status</a></li>
-                            <li><a href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy</a></li>
-                            <li><a href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
-                            <li><a href="/dpa" className="text-gray-400 hover:text-white transition-colors">DPA</a></li>
-                        </ul>
-                    </div>
-
-                    {/* Newsletter */}
-                    <div className="col-span-1">
-                        <div className="bg-gray-800 rounded-2xl p-6">
-                            <p className="mb-4">
-                                <span className="text-blue-300">Subscribe to our</span> 
-                                <span className="text-white"> weekly newsletter</span>
-                            </p>
-                            <div className="flex">
-                                <input 
-                                    type="email" 
-                                    placeholder="Your email" 
-                                    className="bg-transparent border-0 flex-grow focus:outline-none text-white"
-                                />
-                                <button className="bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-2 rounded-full transition-colors">
-                                    Subscribe
-                                </button>
-                            </div>
+        <footer 
+            ref={footerRef} 
+            className={`bg-gradient-to-b from-gray-800 via-gray-900 to-black text-gray-300 py-20 relative overflow-hidden`}
+            aria-labelledby="footer-heading"
+        >
+            <h2 id="footer-heading" className="sr-only">Footer</h2>
+            
+            {/* Decorative elements */}
+            <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-blue-900/30 to-transparent rounded-full blur-3xl opacity-40"></div>
+            <div className="absolute bottom-0 right-0 w-1/4 h-1/2 bg-gradient-to-tl from-indigo-900/30 to-transparent rounded-full blur-3xl opacity-40"></div>
+            
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    {/* Left Column: Logo and Description */}
+                    <div 
+                        className={`lg:col-span-4 transform transition-all duration-1000 ${
+                            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                        }`}
+                    >
+                        <Link to="/" className="inline-block mb-6">
+                            <img src={logo} alt="ImpactfulPitch Logo" className="h-10 w-auto" />
+                        </Link>
+                        <p className="text-gray-400 mb-6 leading-relaxed max-w-sm">
+                            Empowering startups with AI-driven pitch decks and strategic insights for successful fundraising.
+                        </p>
+                        <div className="flex space-x-4">
+                            {/* Social media links - with proper accessibility */}
+                            {[
+                                { name: 'Twitter', icon: 'M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z', href: '#twitter' },
+                                { name: 'LinkedIn', icon: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 2a2 2 0 1 1-2 2 2 2 0 0 1 2-2z', href: '#linkedin' },
+                                { name: 'Instagram', icon: 'M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01 M7.5 2h9a5 5 0 0 1 5 5v9a5 5 0 0 1-5 5h-9a5 5 0 0 1-5-5v-9a5 5 0 0 1 5-5z', href: '#instagram' }
+                            ].map(social => (
+                                <a 
+                                    key={social.name}
+                                    href={social.href} 
+                                    className="text-gray-400 hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                                    aria-label={`Follow us on ${social.name}`}
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d={social.icon}></path>
+                                    </svg>
+                                </a>
+                            ))}
                         </div>
                     </div>
+
+                    {/* Middle Columns: Navigation Links */}
+                    <div 
+                        className={`lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-8 transform transition-all duration-1000 delay-300 ${
+                            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                        }`}
+                    >
+                        <div>
+                            <h4 className="text-white font-semibold mb-4 tracking-wider uppercase text-sm">Product</h4>
+                            <ul className="space-y-3">
+                                {['Features', 'Pricing', 'Templates', 'Integrations'].map(item => (
+                                    <li key={item} className="transform transition-all" style={{ 
+                                        transitionDelay: `${300 + (50 * Math.random())}ms`,
+                                        opacity: isVisible ? 1 : 0,
+                                        transform: isVisible ? 'translateY(0)' : 'translateY(10px)'
+                                    }}>
+                                        <Link to={`/${item.toLowerCase()}`} className="text-gray-400 hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 py-1 inline-block">
+                                            {item}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 className="text-white font-semibold mb-4 tracking-wider uppercase text-sm">Company</h4>
+                            <ul className="space-y-3">
+                                {['About Us', 'Careers', 'Blog', 'Contact'].map(item => (
+                                    <li key={item} className="transform transition-all" style={{ 
+                                        transitionDelay: `${450 + (50 * Math.random())}ms`,
+                                        opacity: isVisible ? 1 : 0,
+                                        transform: isVisible ? 'translateY(0)' : 'translateY(10px)'
+                                    }}>
+                                        <Link to={`/${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-gray-400 hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 py-1 inline-block">
+                                            {item}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 className="text-white font-semibold mb-4 tracking-wider uppercase text-sm">Resources</h4>
+                            <ul className="space-y-3">
+                                {['Case Studies', 'Guides', 'Support Center', 'API Docs'].map(item => (
+                                    <li key={item} className="transform transition-all" style={{ 
+                                        transitionDelay: `${600 + (50 * Math.random())}ms`,
+                                        opacity: isVisible ? 1 : 0,
+                                        transform: isVisible ? 'translateY(0)' : 'translateY(10px)'
+                                    }}>
+                                        <Link to={`/${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-gray-400 hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 py-1 inline-block">
+                                            {item}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* Right Column: Newsletter Signup */}
+                    <div 
+                        className={`lg:col-span-3 transform transition-all duration-1000 delay-700 ${
+                            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                        }`}
+                    >
+                        <h4 className="text-white font-semibold mb-4 tracking-wider uppercase text-sm">Stay Updated</h4>
+                        <p className="text-gray-400 mb-4">Get the latest news, insights, and product updates directly in your inbox.</p>
+                        <form onSubmit={handleSubscribe} className="relative"> 
+                            <div className="flex flex-col sm:flex-row gap-3">
+                                <div className="relative flex-grow">
+                                    <input 
+                                        type="email" 
+                                        placeholder="Enter your email" 
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        onFocus={() => setActiveInput(true)}
+                                        onBlur={() => setActiveInput(false)}
+                                        className="w-full px-4 py-3 rounded-md bg-gray-700/50 border border-gray-600 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-300"
+                                        aria-label="Email address"
+                                        required
+                                    />
+                                    {/* Animating border for input focus */}
+                                    <span 
+                                        className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 transform scale-x-0 transition-transform duration-300" 
+                                        style={{
+                                            transform: activeInput ? 'scaleX(1)' : 'scaleX(0)',
+                                        }}
+                                        aria-hidden="true"
+                                    ></span>
+                                </div>
+                                <StyledButton 
+                                    type="submit" 
+                                    variant="primary"
+                                    size="md" 
+                                    className="w-full sm:w-auto shadow-md shadow-blue-900/30 hover:shadow-blue-900/50"
+                                >
+                                    Subscribe
+                                </StyledButton>
+                            </div>
+                            {showThanks && (
+                                <div 
+                                    className="text-green-400 py-2 flex items-center absolute -bottom-10 left-0 right-0"
+                                    style={{ animation: 'fadeIn 0.5s ease-out forwards' }}
+                                    aria-live="polite"
+                                >
+                                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    Thanks for subscribing!
+                                </div>
+                            )}
+                        </form>
+                        <p className="text-xs text-gray-500 mt-3">We respect your privacy. Unsubscribe anytime.</p>
+                    </div>
+                    
                 </div>
 
-                {/* Bottom section with copyright */}
-                <div className="border-t border-gray-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <div className="text-gray-500 text-sm mb-4 md:mb-0">
-                        © 2024 Impactful Pitch Pvt. Ltd
-                    </div>
-                    <div className="text-gray-500 text-sm flex flex-col md:flex-row md:items-center">
-                        <span className="mb-2 md:mb-0 md:mr-4">Registered at Delhi India</span>
-                        <span className="md:border-l md:border-gray-700 md:pl-4">GST no. 13585168</span>
+                {/* Footer Bottom */}
+                <div 
+                    className={`mt-16 pt-8 border-t border-gray-700/50 text-center md:text-left md:flex md:justify-between items-center transition-all duration-1000 delay-1000 ${
+                        isVisible ? 'opacity-100' : 'opacity-0'
+                    }`}
+                >
+                    <p className="text-sm text-gray-500 mb-4 md:mb-0">
+                        &copy; {new Date().getFullYear()} ImpactfulPitch. All rights reserved.
+                    </p>
+                    <div className="flex justify-center md:justify-start space-x-6">
+                        <Link to="/privacy" className="text-sm text-gray-500 hover:text-gray-300 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900">
+                            Privacy Policy
+                        </Link>
+                        <Link to="/terms" className="text-sm text-gray-500 hover:text-gray-300 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900">
+                            Terms of Service
+                        </Link>
                     </div>
                 </div>
             </div>

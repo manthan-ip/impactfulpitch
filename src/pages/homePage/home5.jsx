@@ -1,23 +1,56 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import StyledButton from "../../components/StyledButton";
 
-// Case Study Card Component
-function CaseStudyCard({ image, color, title, description, link }) {
+// Case Study Card Component with hover effects and animations
+function CaseStudyCard({ image, color, title, description, link, index, isVisible }) {
+  const [isHovered, setIsHovered] = useState(false);
+  
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+    <div 
+      className={`relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}
+      style={{ 
+        transitionDelay: `${150 * index}ms`,
+        transitionProperty: 'all',
+        transitionDuration: '800ms'
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Card highlight effect on hover */}
+      <div 
+        className={`absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-indigo-500/5 opacity-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : ''}`}
+      ></div>
+      
       <div className="h-48 overflow-hidden">
-        <img src={image} alt={title} className="w-full h-full object-cover" />
+        <img 
+          src={image} 
+          alt={title} 
+          className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? 'scale-110' : 'scale-100'}`} 
+        />
+        {/* Image overlay with gradient on hover */}
+        <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition-opacity duration-300 ${isHovered ? 'opacity-80' : 'opacity-0'}`}></div>
       </div>
-      <div className="p-5">
+      <div className="p-5 relative">
         <div className="flex items-center mb-3">
-          <div className={`w-2 h-2 rounded-full bg-${color}-500 mr-2`}></div>
+          <div className={`w-2 h-2 rounded-full bg-${color}-500 mr-2 ${isHovered ? 'animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]' : ''}`}></div>
           <span className="text-gray-400 text-sm">5 min read</span>
         </div>
-        <h3 className="text-xl font-bold mb-3">{title}</h3>
+        <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${isHovered ? 'text-blue-700' : 'text-gray-900'}`}>{title}</h3>
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">{description}</p>
         <Link to={link} className="inline-block">
-          <div className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center hover:bg-black transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className={`w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center transition-all duration-300 ${
+            isHovered ? 'bg-blue-600 shadow-lg scale-110' : 'bg-gray-900'
+          }`}>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className={`h-4 w-4 text-white transition-transform duration-300 ${isHovered ? 'translate-x-0.5' : ''}`} 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </div>
@@ -28,6 +61,33 @@ function CaseStudyCard({ image, color, title, description, link }) {
 }
 
 export default function HomeSection5() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+  const [activeAvatar, setActiveAvatar] = useState(null);
+  
+  // Animation to reveal content when section comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+  
   // Case studies data
   const caseStudies = [
     {
@@ -84,26 +144,70 @@ export default function HomeSection5() {
     "https://randomuser.me/api/portraits/women/76.jpg"
   ];
 
+  // Custom fade-in animation style
+  const fadeInAnimation = {
+    opacity: 0,
+    animation: 'fadeIn 0.5s ease-out forwards',
+    '@keyframes fadeIn': {
+      from: { opacity: 0 },
+      to: { opacity: 1 }
+    }
+  };
+
   return (
-    <section className="py-24 px-8 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center px-4 py-1 mb-4 rounded-full bg-gray-100 text-gray-700 text-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <section 
+      ref={sectionRef}
+      className="py-16 pt-8 pb-24 px-8 bg-gradient-to-b from-purple-100 via-indigo-100 to-blue-100 relative overflow-hidden"
+    >
+      {/* Subtle texture overlay for continuity */}
+      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+')]"></div>
+      
+      {/* Animated background elements */}
+      <div className="absolute -top-20 -left-20 w-64 h-64 bg-purple-400/10 rounded-full blur-3xl animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
+      <div className="absolute top-1/3 right-0 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl animate-[pulse_8s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
+      
+      {/* Blend element to connect with next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-blue-100 -mb-1"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header with animated underline */}
+        <div 
+          className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
+          <div className="inline-flex items-center justify-center px-4 py-1 mb-4 rounded-full bg-gray-100/80 backdrop-blur-sm text-gray-700 text-sm transform transition-transform duration-500 hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
-            Success Stories
+            <span className="bg-gradient-to-r from-blue-700 to-indigo-600 text-transparent bg-clip-text font-medium">Success Stories</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-2">
+          <h2 
+            className={`text-4xl md:text-5xl font-bold mb-2 transition-all duration-700 delay-300 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             The story of clients
           </h2>
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">
+          <h2 
+            className={`text-4xl md:text-5xl font-bold mb-2 transition-all duration-700 delay-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             who have raised funds
           </h2>
+          
+          {/* Animated underline */}
+          <div className="flex justify-center">
+            <div 
+              className={`h-1 w-24 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mt-8 transition-all duration-1000 delay-700 transform ${
+                isVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+              }`}
+            ></div>
+          </div>
         </div>
 
-        {/* Case Studies Grid */}
+        {/* Case Studies Grid with staggered animation */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {caseStudies.map((study, index) => (
             <CaseStudyCard
@@ -113,31 +217,60 @@ export default function HomeSection5() {
               title={study.title}
               description={study.description}
               link={study.link}
+              index={index}
+              isVisible={isVisible}
             />
           ))}
         </div>
 
-        {/* Client Avatars */}
-        <div className="flex flex-col items-center">
+        {/* Client Avatars with hover effects */}
+        <div 
+          className={`flex flex-col items-center transition-all duration-1000 delay-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <div className="flex -space-x-2 mb-4">
             {clientAvatars.map((avatar, index) => (
-              <img 
+              <div 
                 key={index}
-                src={avatar} 
-                alt={`Funded client ${index + 1}`}
-                className="w-10 h-10 rounded-full border-2 border-white"
-              />
+                className="relative transform transition-all duration-300"
+                onMouseEnter={() => setActiveAvatar(index)}
+                onMouseLeave={() => setActiveAvatar(null)}
+                style={{ 
+                  zIndex: activeAvatar === index ? 10 : 10 - index,
+                  transform: activeAvatar === index ? 'scale(1.2) translateY(-10px)' : 'scale(1) translateY(0)'
+                }}
+              >
+                <img 
+                  src={avatar} 
+                  alt={`Funded client ${index + 1}`}
+                  className="w-10 h-10 rounded-full border-2 border-white transition-all duration-300"
+                  style={{ 
+                    boxShadow: activeAvatar === index ? '0 10px 25px -5px rgba(59, 130, 246, 0.5)' : 'none',
+                    borderColor: activeAvatar === index ? '#3b82f6' : 'white'
+                  }}
+                />
+                {activeAvatar === index && (
+                  <div 
+                    className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white text-xs text-blue-800 font-medium px-2 py-0.5 rounded-md shadow-md"
+                    style={fadeInAnimation}
+                  >
+                    Client {index + 1}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
-          <p className="text-gray-600 mb-8">
-            Be among 400+ funded startups powered by Impactful pitch
+          <p className="text-gray-600 mb-8 text-center max-w-md">
+            Be among <span className="text-blue-700 font-bold">400+</span> funded startups powered by Impactful pitch
           </p>
-          <Link 
+          <StyledButton 
             to="/case-studies" 
-            className="px-8 py-2 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors"
+            variant="secondary"
+            size="md"
           >
             Browse all
-          </Link>
+          </StyledButton>
         </div>
       </div>
     </section>

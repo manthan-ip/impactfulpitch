@@ -46,8 +46,14 @@ export default function HomeSection4() {
   };
 
   return (
-    <section className="py-24 px-8 bg-gradient-to-r from-blue-50 to-purple-50">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-16 pt-8 pb-24 px-8 bg-gradient-to-b from-indigo-100 via-blue-100 to-purple-100 relative">
+      {/* Subtle texture overlay for continuity */}
+      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+')]"></div>
+      
+      {/* Blend element to connect with next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-purple-100 -mb-1"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center px-4 py-1 mb-4 rounded-full bg-gray-100 text-gray-700 text-sm">

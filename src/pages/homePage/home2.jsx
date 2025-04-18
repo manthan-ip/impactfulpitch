@@ -75,8 +75,17 @@ export default function HomeSection2() {
   ];
 
   return (
-    <section className="py-20 px-8 bg-gradient-to-r from-pink-50 via-white to-blue-50">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-16 pt-0 pb-32 px-8 bg-gradient-to-b from-indigo-100 via-purple-100 to-indigo-100 relative">
+      {/* Subtle texture overlay for continuity */}
+      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+')]"></div>
+      
+      {/* Enhanced blend element for section 3 */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-indigo-100/80 to-indigo-100 -mb-1 z-10"></div>
+      
+      {/* Gradient overlay for added depth */}
+      <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-indigo-500/5 to-purple-500/5"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center px-4 py-1 mb-4 rounded-full bg-gray-100 text-gray-700 text-sm">
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
