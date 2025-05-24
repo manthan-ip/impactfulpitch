@@ -40,22 +40,24 @@ export default function StyledButton({
   // Variant specific styles (border, text color)
   // Primary variant text color is white by default, violet on hover
   const variantStyles = {
-    primary: 'border border-transparent text-white hover:border-violet-200 hover:text-violet-700',
+    primary: 'border border-transparent hover:shadow-lg text-white hover:border-blue-600 hover:text-violet-900',
     secondary: 'border border-gray-300 hover:border-blue-500 hover:text-blue-700 text-gray-700',
     outline: 'border border-gray-300 hover:border-blue-500 hover:text-blue-700 text-gray-700',
     ghost: 'hover:text-blue-700 text-gray-600',
     dark: 'border border-gray-700 hover:border-blue-500 hover:text-white text-gray-200',
     light: 'border border-white/20 hover:border-white hover:text-white text-white/90',
+    custom: 'border border-blue-500 hover:border-blue-600 hover:text-blue-700 text-white bg-gradient-to-r from-gray-900 to-indigo-900',
   };
   
   // Background gradient variations
   const gradientStyles = {
-    primary: 'bg-gradient-to-r from-violet-500 to-blue-500',
+    primary: 'bg-gradient-to-r from-violet-500 to-blue-600',
     secondary: 'bg-gradient-to-r from-blue-50 to-indigo-50',
     outline: 'bg-gradient-to-r from-blue-50 to-indigo-50',
     ghost: 'bg-gradient-to-r from-gray-50 to-gray-100',
     dark: 'bg-gradient-to-r from-gray-900 to-indigo-900',
     light: 'bg-gradient-to-r from-white/90 to-blue-50',
+    custom: 'bg-gradient-to-r from-blue-50 to-indigo-50',
   };
   
   // Full width style

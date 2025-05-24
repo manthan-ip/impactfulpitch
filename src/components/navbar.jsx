@@ -10,7 +10,7 @@ export default function Navbar() {
     // Track scroll position for navbar appearance changes
     useEffect(() => {
         const handleScroll = () => {
-            const isScrolled = window.scrollY > 20;
+            const isScrolled = window.scrollY > 30;
             if (isScrolled !== scrolled) {
                 setScrolled(isScrolled);
             }
@@ -22,15 +22,14 @@ export default function Navbar() {
 
     return (
         <nav 
-            className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-10 backdrop-blur-md transition-all duration-500 ease-in-out ${
+            className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-10 backdrop-blur-sm transition-all duration-500 ease-in-out ${
                 scrolled 
-                    ? 'py-3 bg-white/40 shadow-[0_0_15px_rgba(0,0,0,0.05)]' 
+                    ? 'py-3 bg-white/60 shadow-[0_0_15px_rgba(0,0,0,0.2)]' 
                     : 'py-5 bg-gradient-to-r from-blue-50/30 via-purple-50/30 to-blue-50/30'
             }`}
         >
             {/* Subtle animated border that appears on scroll */}
-            <div className={`absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-300/50 to-transparent transform transition-opacity duration-500 ease-in-out ${scrolled ? 'opacity-100' : 'opacity-0'}`}></div>
-            
+            <div className={`absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue-600/30 to-transparent transform transition-opacity duration-400 ease-in-out ${scrolled ? 'opacity-100' : 'opacity-0'}`}></div>
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 {/* Logo with hover animation */}
                 <Link 
@@ -41,8 +40,7 @@ export default function Navbar() {
                 >
                     {/* Logo glow effect */}
                     <div className={`absolute inset-0 rounded-full bg-blue-400/20 blur-md transition-opacity duration-300 ${hovered === 'logo' ? 'opacity-100' : 'opacity-0'}`}></div>
-                    
-                    <div className="relative transform transition-transform duration-300 group-hover:scale-105">
+                    <div className="relative transform transition-transform duration-300 group-hover:scale-103">
                         <img 
                             src={logo}
                             alt="ImpactfulPitch Logo" 
@@ -53,6 +51,13 @@ export default function Navbar() {
                 
                 {/* Navigation Links with hover effects */}
                 <div className="hidden md:flex items-center space-x-12">
+                    <NavLink 
+                        to="/" 
+                        label="Home" 
+                        active={hovered === 'home'}
+                        onMouseEnter={() => setHovered('home')}
+                        onMouseLeave={() => setHovered(null)}
+                    />
                     <NavLink 
                         to="/services" 
                         label="Services" 
@@ -103,14 +108,12 @@ function NavLink({ to, label, active, onMouseEnter, onMouseLeave }) {
             onMouseLeave={onMouseLeave}
         >
             {/* Text with hover effect */}
-            <span className="relative z-10 text-gray-800 font-medium transition-colors duration-300 group-hover:text-gray-900">
+            <span className="relative z-10 text-gray-700 font-medium transition-colors duration-300 group-hover:text-gray-950">
                 {label}
             </span>
             
             {/* Animated underline */}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-400 to-blue-500 group-hover:w-full transition-all duration-300 ease-out"></span>
-            
-            {/* Removed background hover effect */}
         </Link>
     );
 }
