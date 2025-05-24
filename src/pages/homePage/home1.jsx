@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import StyledButton from "../../components/StyledButton";
 
 export default function HomeSection1() {
   const [isVisible, setIsVisible] = useState(false);
@@ -43,21 +43,8 @@ export default function HomeSection1() {
   return (
     <section 
       ref={sectionRef}
-      className="py-16 pb-32 px-8 bg-gradient-to-b from-blue-50 via-blue-100 to-indigo-100 relative overflow-hidden"
-    >
-      {/* Subtle texture overlay for continuity */}
-      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+')]"></div>
-      
-      {/* Animated decorative elements */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
-      <div className="absolute bottom-40 right-10 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl animate-[pulse_8s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
-      
-      {/* Enhanced blend element for section 2 */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-indigo-100/70 to-indigo-100 -mb-1 z-10"></div>
-      
-      {/* Gradient overlay for added depth */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-500/5 to-indigo-500/5"></div>
-      
+      className="py-16 pb-32 px-8 relative overflow-hidden"
+    >      
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 w-full">
           {/* Left Section - Content */}
@@ -76,7 +63,7 @@ export default function HomeSection1() {
             </h1>
 
             <p 
-              className={`text-lg text-gray-600 mb-8 max-w-lg transition-all duration-1000 delay-300 ${
+              className={`text-lg text-gray-700 mb-8 max-w-lg transition-all duration-1000 delay-300 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
             >
@@ -89,25 +76,14 @@ export default function HomeSection1() {
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
             >
-              <Link
+              <StyledButton 
+                variant="primary" 
+                size="md" 
                 to="/contact"
-                className="relative group bg-gray-900 hover:bg-black text-white font-medium py-3 px-8 rounded-full transition-all duration-300 inline-flex items-center overflow-hidden"
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
+                className="inline-block"
               >
-                <span className="relative z-10 flex items-center transition-transform duration-300 group-hover:translate-x-1">
-                  Schedule Call
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </span>
-                
-                {/* Button shine effect */}
-                <span 
-                  className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full transition-transform duration-1000" 
-                  style={{ transform: hovered ? 'translateX(100%)' : 'translateX(-100%)' }}
-                ></span>
-              </Link>
+                Schedule a Call
+              </StyledButton>
             </div>
             
             <div 
@@ -142,9 +118,9 @@ export default function HomeSection1() {
           >
             {/* 230+ card with hover effect */}
             <div 
-              className="absolute top-0 right-0 bg-white text-black p-6 rounded-2xl shadow-lg z-10 w-60 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer"
+              className="absolute top-0 right-0 bg-white text-black p-6 rounded-2xl shadow-lg z-10 w-60 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3"
               style={{ 
-                transitionDelay: isVisible ? '800ms' : '0ms',
+                transitionDelay: isVisible ? '50ms' : '0ms',
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateX(0)' : 'translateX(40px)'
               }}
@@ -164,6 +140,7 @@ export default function HomeSection1() {
                 ...(isVisible ? floatingAnimation : {})
               }}
             >
+              {/* Hidden behind the upper block */}
               <div className="absolute top-2 right-2 bg-blue-600 rounded-full p-4 animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />

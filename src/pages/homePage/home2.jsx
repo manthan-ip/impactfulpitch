@@ -1,9 +1,9 @@
-import React from "react";
+import SpotlightCard from '../../components/SpotlightCard';
 
 // Service Card Component
 function ServiceCard({ icon, title, description }) {
   return (
-    <div className="border border-gray-100 bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+    <SpotlightCard className="border border-gray-200 bg-white p-6 rounded-lg shadow-sm hover:shadow-lg transition-shadow" spotlightColor = "rgba(200, 130, 230, 0.15)">
       <div className="w-12 h-12 border border-gray-200 rounded-lg flex items-center justify-center mb-4">
         {icon}
       </div>
@@ -11,7 +11,7 @@ function ServiceCard({ icon, title, description }) {
       <p className="text-gray-600">
         {description}
       </p>
-    </div>
+    </SpotlightCard>
   );
 }
 
@@ -75,23 +75,14 @@ export default function HomeSection2() {
   ];
 
   return (
-    <section className="py-16 pt-0 pb-32 px-8 bg-gradient-to-b from-indigo-100 via-purple-100 to-indigo-100 relative">
-      {/* Subtle texture overlay for continuity */}
-      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+')]"></div>
-      
-      {/* Enhanced blend element for section 3 */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-indigo-100/80 to-indigo-100 -mb-1 z-10"></div>
-      
-      {/* Gradient overlay for added depth */}
-      <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-indigo-500/5 to-purple-500/5"></div>
-      
+    <section className="py-16 pt-0 pb-32 px-8 relative">      
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center px-4 py-1 mb-4 rounded-full bg-gray-100 text-gray-700 text-sm">
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <div className="inline-flex items-center justify-center px-4 py-1 mb-4 rounded-full bg-gray-800 backdrop-blur-sm text-white text-sm transform transition-transform duration-500 hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
-            Services
+            <span className="font-medium text-blue-300">Success Stories</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Unlock Cosmic Advantages

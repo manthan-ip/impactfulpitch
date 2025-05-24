@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import StyledButton from "../../components/StyledButton";
 
 // Case Study Card Component with hover effects and animations
 function CaseStudyCard({ image, color, title, description, link, index, isVisible }) {
   const [isHovered, setIsHovered] = useState(false);
-  
+
   return (
     <div 
-      className={`relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform ${
+      className={`relative bg-gray-900 text-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
       style={{ 
@@ -38,15 +38,15 @@ function CaseStudyCard({ image, color, title, description, link, index, isVisibl
           <div className={`w-2 h-2 rounded-full bg-${color}-500 mr-2 ${isHovered ? 'animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]' : ''}`}></div>
           <span className="text-gray-400 text-sm">5 min read</span>
         </div>
-        <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${isHovered ? 'text-blue-700' : 'text-gray-900'}`}>{title}</h3>
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">{description}</p>
+        <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${isHovered ? 'text-blue-200' : 'text-white'}`}>{title}</h3>
+        <p className="text-gray-300 text-sm mb-4 line-clamp-2">{description}</p>
         <Link to={link} className="inline-block">
-          <div className={`w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center transition-all duration-300 ${
-            isHovered ? 'bg-blue-600 shadow-lg scale-110' : 'bg-gray-900'
+          <div className={`w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 ${
+            isHovered ? 'bg-blue-700 shadow-xl scale-110' : 'bg-blue-600'
           }`}>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              className={`h-4 w-4 text-white transition-transform duration-300 ${isHovered ? 'translate-x-0.5' : ''}`} 
+              className={`h-4 w-4 text-white transition-transform duration-300 ${isHovered ? 'translate-x-0.5 scale-110' : ''}`} 
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor"
@@ -157,18 +157,8 @@ export default function HomeSection5() {
   return (
     <section 
       ref={sectionRef}
-      className="py-16 pt-8 pb-24 px-8 bg-gradient-to-b from-purple-100 via-indigo-100 to-blue-100 relative overflow-hidden"
-    >
-      {/* Subtle texture overlay for continuity */}
-      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+')]"></div>
-      
-      {/* Animated background elements */}
-      <div className="absolute -top-20 -left-20 w-64 h-64 bg-purple-400/10 rounded-full blur-3xl animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
-      <div className="absolute top-1/3 right-0 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl animate-[pulse_8s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
-      
-      {/* Blend element to connect with next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-blue-100 -mb-1"></div>
-      
+      className="py-16 pt-8 pb-24 px-8 relative overflow-hidden"
+    >      
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header with animated underline */}
         <div 
@@ -176,21 +166,21 @@ export default function HomeSection5() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <div className="inline-flex items-center justify-center px-4 py-1 mb-4 rounded-full bg-gray-100/80 backdrop-blur-sm text-gray-700 text-sm transform transition-transform duration-500 hover:scale-105">
+          <div className="inline-flex items-center justify-center px-4 py-1 mb-4 rounded-full bg-gray-800 backdrop-blur-sm text-white text-sm transform transition-transform duration-500 hover:scale-105">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
-            <span className="bg-gradient-to-r from-blue-700 to-indigo-600 text-transparent bg-clip-text font-medium">Success Stories</span>
+            <span className="font-medium text-blue-300">Success Stories</span>
           </div>
           <h2 
-            className={`text-4xl md:text-5xl font-bold mb-2 transition-all duration-700 delay-300 ${
+            className={`text-4xl md:text-5xl font-bold mb-2 transition-all duration-700 delay-300 text-gray-900 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
             The story of clients
           </h2>
           <h2 
-            className={`text-4xl md:text-5xl font-bold mb-2 transition-all duration-700 delay-500 ${
+            className={`text-4xl md:text-5xl font-bold mb-2 transition-all duration-700 delay-500 text-gray-900 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
@@ -242,8 +232,8 @@ export default function HomeSection5() {
                 }}
               >
                 <img 
-                  src={avatar} 
-                  alt={`Funded client ${index + 1}`}
+                src={avatar} 
+                alt={`Funded client ${index + 1}`}
                   className="w-10 h-10 rounded-full border-2 border-white transition-all duration-300"
                   style={{ 
                     boxShadow: activeAvatar === index ? '0 10px 25px -5px rgba(59, 130, 246, 0.5)' : 'none',
@@ -266,7 +256,7 @@ export default function HomeSection5() {
           </p>
           <StyledButton 
             to="/case-studies" 
-            variant="secondary"
+            variant="primary"
             size="md"
           >
             Browse all
