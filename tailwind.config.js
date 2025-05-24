@@ -4,6 +4,11 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: [
+    'bg-blue-500',
+    'bg-orange-500',
+    'bg-purple-500',
+  ],
   theme: {
     extend: {
       animation: {
@@ -46,4 +51,4 @@ export default {
     },
   },
   plugins: [],
-} 
+}
