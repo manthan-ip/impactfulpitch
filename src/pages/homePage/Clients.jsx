@@ -1,7 +1,6 @@
-import { useState } from "react";
 import CarouselGallery from "../../components/CarouselGallery";      
 
-export default function HomeSection4() {
+export default function Clients() {
   // Testimonial data
   const testimonials = [
     {

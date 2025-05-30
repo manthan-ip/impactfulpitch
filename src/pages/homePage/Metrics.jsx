@@ -2,7 +2,7 @@ import CountUp from "react-countup"
 import { useEffect, useState, useRef } from "react"
 import SpotlightCard from "../../components/SpotlightCard";
 
-export default function HomeSection3() {
+export default function Metrics() {
   const [isVisible, setIsVisible]= useState(false);
   const sectionRef= useRef(null);
 
@@ -46,7 +46,7 @@ export default function HomeSection3() {
         </svg>
       ),
       label: "Startups Assisted",
-      value: "5000"
+      value: "7000"
     },
     {
       icon: (

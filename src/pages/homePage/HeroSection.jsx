@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import StyledButton from "../../components/StyledButton";
 
-export default function HomeSection1() {
+export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
   const [hovered, setHovered] = useState(false);

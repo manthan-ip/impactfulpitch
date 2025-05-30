@@ -4,7 +4,7 @@ import { BiTrophy } from 'react-icons/bi';
 import { HiAcademicCap } from 'react-icons/hi';
 import { BsBriefcase, BsLightbulb } from 'react-icons/bs';
 
-export default function HomeSection7() {
+export default function ManBehind() {
   // Expert's achievements
   const achievements = [
     {
@@ -67,7 +67,7 @@ export default function HomeSection7() {
             <span className="font-medium text-blue-300">The Man Behind</span>
           </div>
           <h2 className="text-4xl font-bold mb-4 text-gray-900">
-            Meet your<br />expert guide
+            Meet your Expert Guide
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto mb-12">
             30+ Years of Collective Team Proficiency in Consulting Startups

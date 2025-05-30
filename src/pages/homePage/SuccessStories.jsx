@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import StyledButton from "../../components/StyledButton";
 
 // Case Study Card Component with hover effects and animations
-function CaseStudyCard({ image, color, title, description, link, index, isVisible }) {
+function CaseStudyCard({ image, title, description, index, isVisible }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -34,13 +33,13 @@ function CaseStudyCard({ image, color, title, description, link, index, isVisibl
         <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition-opacity duration-300 ${isHovered ? 'opacity-80' : 'opacity-0'}`}></div>
       </div>
       <div className="p-5 relative">
-        <div className="flex items-center mb-3">
+        {/* <div className="flex items-center mb-3">
           <div className={`w-2 h-2 rounded-full bg-${color}-500 mr-2 ${isHovered ? 'animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]' : ''}`}></div>
           <span className="text-gray-400 text-sm">5 min read</span>
-        </div>
+        </div> */}
         <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${isHovered ? 'text-blue-200' : 'text-white'}`}>{title}</h3>
         <p className="text-gray-300 text-sm mb-4 line-clamp-2">{description}</p>
-        <Link to={link} className="inline-block">
+        {/* <Link to={link} className="inline-block">
           <div className={`w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 ${
             isHovered ? 'bg-blue-700 shadow-xl scale-110' : 'bg-blue-600'
           }`}>
@@ -54,13 +53,13 @@ function CaseStudyCard({ image, color, title, description, link, index, isVisibl
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </div>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
 }
 
-export default function HomeSection5() {
+export default function SuccessStories() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
   const [activeAvatar, setActiveAvatar] = useState(null);
@@ -92,45 +91,33 @@ export default function HomeSection5() {
   const caseStudies = [
     {
       image: "https://placehold.co/600x400/cccccc/969696?text=Algobulls+Team",
-      color: "blue",
       title: "How Algobulls Raised 2M USD for their Business",
       description: "We are the top digital marketing agency for branding corp. We offer a full rang engine...",
-      link: "/case-studies/algobulls"
     },
     {
       image: "https://placehold.co/600x400/cccccc/969696?text=Hesa+Team",
-      color: "orange",
       title: "Hesa: A leading startup got 1.5M USD of Funding",
       description: "Working with this digital marketing agency has been a true partnership. They have tak...",
-      link: "/case-studies/hesa"
     },
     {
       image: "https://placehold.co/600x400/cccccc/969696?text=Ideal+Insurance",
-      color: "purple",
       title: "How Ideal Insurance is Changing The Game",
       description: "What sets this digital marketing agency apart is their commitment to transparency and...",
-      link: "/case-studies/ideal-insurance"
     },
     {
       image: "https://placehold.co/600x400/cccccc/969696?text=BrandX+Team",
-      color: "blue",
       title: "How BrandX Scaled their company to over US$ 200M and Coming for More",
       description: "We are the top digital marketing agency for branding corp. We offer a full rang engine...",
-      link: "/case-studies/brandx"
     },
     {
       image: "https://placehold.co/600x400/cccccc/969696?text=Startup+Trends",
-      color: "orange",
       title: "The Latest Trends and Strategies in the Startup Industry",
       description: "Working with this digital marketing agency has been a true partnership. They have tak...",
-      link: "/case-studies/startup-trends"
     },
     {
       image: "https://placehold.co/600x400/cccccc/969696?text=ROI+Expertise",
-      color: "purple",
       title: "Maximizing ROI with the Expertise of a Digital Marketing Agency",
       description: "What sets this digital marketing agency apart is their commitment to transparency and...",
-      link: "/case-studies/maximizing-roi"
     }
   ];
 
@@ -177,24 +164,22 @@ export default function HomeSection5() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            The story of clients
+            Stories of Success & Funding
           </h2>
-          <h2 
-            className={`text-4xl md:text-5xl font-bold mb-2 transition-all duration-700 delay-500 text-gray-900 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            who have raised funds
-          </h2>
+          <p className={`text-gray-600 max-w-2xl mx-auto mb-2 transition-all duration-700 delay-500 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+            30+ Years of Collective Team Proficiency in Consulting Startups
+          </p>
           
           {/* Animated underline */}
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <div 
-              className={`h-1 w-24 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mt-8 transition-all duration-1000 delay-700 transform ${
+              className={`h-1 w-24 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mt-4 transition-all duration-1000 delay-700 transform ${
                 isVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
               }`}
             ></div>
-          </div>
+          </div> */}
         </div>
 
         {/* Case Studies Grid with staggered animation */}
@@ -251,11 +236,11 @@ export default function HomeSection5() {
               </div>
             ))}
           </div>
-          <p className="text-gray-600 mb-8 text-center max-w-md">
-            Be among <span className="text-blue-700 font-bold">400+</span> funded startups powered by Impactful pitch
+          <p className="text-gray-600 mb-8 text-center">
+            Be among the innovators turning ambition into achievement— with <span className="text-blue-700 font-bold">Impactful Pitch</span>
           </p>
           <StyledButton 
-            to="/case-studies" 
+            to="/success-stories"
             variant="primary"
             size="md"
           >

@@ -2,7 +2,7 @@ import { FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { SiDribbble } from 'react-icons/si';
 import StyledButton from '../../components/StyledButton';
 
-export default function HomeSection7() {
+export default function Community() {
     return (
         <section className="py-16 pt-8 pb-24 px-8 relative">            
             <div className="max-w-7xl mx-auto relative z-10">

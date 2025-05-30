@@ -89,7 +89,7 @@ const FAQItem = ({ question, isOpen, toggleOpen, index }) => {
     );
 };
 
-export default function HomeSection8() {
+export default function FAQ() {
     const [openFAQ, setOpenFAQ] = useState(null);
 
     // FAQ data
