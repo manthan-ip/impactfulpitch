@@ -1,7 +1,6 @@
-import React from 'react';
 import StyledButton from '../../components/StyledButton';
 
-export default function ServicesSection4() {
+export default function FinancialModeling() {
   // Financial services features
   const financialFeatures = [
     "Detailed financial projections",
@@ -19,17 +18,12 @@ export default function ServicesSection4() {
   ];
 
   return (
-    <div className="w-full py-16 bg-gradient-to-b from-purple-100 via-indigo-100 to-purple-100 relative overflow-hidden">
-      {/* Subtle texture overlay for continuity */}
-      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+')]"></div>
-      
-      {/* Gradient overlay for added depth */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-purple-500/5 to-blue-500/5"></div>
-      
+    <div className="w-full py-16 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
           <div className="flex flex-col">
+            <div className='flex gap-5 items-center'>
             <div className="w-20 h-20 p-4 bg-white shadow-lg rounded-2xl mb-6 flex items-center justify-center transform hover:rotate-6 transition-transform duration-300">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-full w-full text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -37,7 +31,7 @@ export default function ServicesSection4() {
             </div>
             
             <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-tight">Financial <span className="text-blue-600">Modeling</span> &<br />Business Valuation</h2>
-            
+            </div>
             <div className="bg-white rounded-full py-2 px-6 shadow-md inline-block mb-6 w-max">
               <span className="text-gray-700 text-sm font-medium">Data-Driven Investor Materials</span>
             </div>
@@ -83,14 +77,7 @@ export default function ServicesSection4() {
           {/* Right Column - Dashboard Image */}
           <div className="relative">
             <div className="bg-white rounded-3xl p-5 shadow-xl transform hover:rotate-1 transition-transform duration-300">
-              <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 relative overflow-hidden shadow-sm">
-                {/* Decorative image in the background */}
-                <img 
-                  src="/vite.svg" 
-                  alt="Vite logo as placeholder" 
-                  className="absolute top-5 right-5 w-16 h-16 opacity-10"
-                />
-                
+              <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 relative overflow-hidden shadow-sm">                
                 <div className="relative z-10">
                   {/* Stats Section */}
                   <div className="grid grid-cols-3 gap-4 mb-8">
@@ -136,7 +123,7 @@ export default function ServicesSection4() {
         </div>
         
         {/* Testimonial Section */}
-        <div className="mt-16 flex flex-col items-center text-center">
+        {/* <div className="mt-16 flex flex-col items-center text-center">
           <div className="w-24 h-24 mb-8 relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-20 animate-pulse"></div>
             <img 
@@ -156,7 +143,7 @@ export default function ServicesSection4() {
           
           <h4 className="font-semibold text-gray-900 text-xl">Filip Mark</h4>
           <p className="text-gray-600">Chief of Staff, Passionfront</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

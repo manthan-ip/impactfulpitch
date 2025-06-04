@@ -1,12 +1,11 @@
-import React from 'react';
 import StyledButton from "../../components/StyledButton";
+import { useContact } from "../../context/ContactContext";
 
-export default function ServicesSection9() {
+export default function Testimonial() {
+  const { onOpen } = useContact();
+  
   return (
-    <div className="py-16 bg-gradient-to-b from-blue-100 via-indigo-100 to-purple-100 relative overflow-hidden">
-      {/* Subtle texture overlay for continuity */}
-      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+')]"></div>
-      
+    <div className="py-16 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-8 relative z-10">
         <div className="w-full">
           {/* Testimonial card */}
@@ -32,7 +31,7 @@ export default function ServicesSection9() {
                 
                 <div className="mt-6 hidden lg:block">
                   <StyledButton 
-                    href="#contact" 
+                    onClick={onOpen}
                     variant="dark"
                     size="md"
                   >
@@ -51,7 +50,7 @@ export default function ServicesSection9() {
                 
                 <div className="mt-6 flex justify-center lg:hidden">
                   <StyledButton 
-                    href="#contact" 
+                    onClick={onOpen}
                     variant="dark"
                     size="md"
                   >
@@ -78,4 +77,4 @@ export default function ServicesSection9() {
       </div>
     </div>
   );
-} 
+}

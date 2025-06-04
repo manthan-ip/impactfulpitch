@@ -1,20 +1,22 @@
 import React from 'react';
 import StyledButton from "../../components/StyledButton";
+import { useContact } from "../../context/ContactContext";
 
-export default function ServicesSection5() {
+export default function FounderGrooming() {
+  const { onOpen } = useContact();
   // Founder services array
   const founderServices = [
     {
       title: "Expert Coaching",
-      description: "One-on-one coaching sessions with experienced investors to prepare you for investor meetings."
+      description: "Our IIM-led experienced team coaches founders on how to effectively communicate their business vision and value proposition to investors."
     },
     {
       title: "Demo Day Preparation",
-      description: "Comprehensive preparation for demo day presentations, including slide review and delivery coaching."
+      description: "We provide specialized services to prepare founders for Demo Day presentations, ensuring they convey their message with confidence and clarity."
     },
     {
       title: "Presentation Guidance",
-      description: "Detailed feedback on your presentation style, body language, and response to investor questions."
+      description: "We guide founders on what to say and how to say it, ensuring they deliver impactful presentations that resonate with investors."
     }
   ];
 
@@ -42,13 +44,7 @@ export default function ServicesSection5() {
   ];
 
   return (
-    <div className="w-full py-16 bg-gradient-to-b from-purple-100 via-blue-100 to-blue-100 relative overflow-hidden">
-      {/* Subtle texture overlay for continuity */}
-      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+')]"></div>
-      
-      {/* Simple gradient overlay to create visual continuity */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-purple-500/5 to-blue-500/5"></div>
-      
+    <div className="w-full py-16 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Stats and Image */}
@@ -107,20 +103,18 @@ export default function ServicesSection5() {
           
           {/* Right Column - Content */}
           <div className="flex flex-col">
+            <div className='flex gap-5 items-center'>
             <div className="w-20 h-20 p-4 bg-white shadow-lg rounded-2xl mb-6 flex items-center justify-center transform hover:rotate-6 transition-transform duration-300">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-full w-full text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
             
-            <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-tight">Founder <span className="text-blue-600">Preparation</span></h2>
-            
-            <div className="bg-white rounded-full py-2 px-6 shadow-md inline-block mb-6 w-max">
-              <span className="text-gray-700 text-sm font-medium">Investor-Ready Presentation Skills</span>
+            <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-tight">Founder's <span className="text-blue-600">Grooming</span></h2>
             </div>
             
             <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-              Our founder preparation services transform your presentation skills and investor readiness. We provide personalized coaching to ensure you communicate your vision effectively and confidently to potential investors.
+              Our Investor Meeting Preparation and Founder's Grooming Services are tailored to help founders present their business in the best possible light. We offer:
             </p>
             
             <ul className="space-y-3 mb-8">
@@ -140,25 +134,18 @@ export default function ServicesSection5() {
             
             <div className="flex flex-wrap gap-4">
               <StyledButton 
-                href="#contact" 
+                onClick={onOpen} 
                 variant="primary"
                 size="lg"
               >
                 Let's Talk
-              </StyledButton>
-              <StyledButton 
-                href="#learn-more" 
-                variant="secondary"
-                size="lg"
-              >
-                Learn More
               </StyledButton>
             </div>
           </div>
         </div>
         
         {/* Testimonial Section */}
-        <div className="mt-16 flex flex-col items-center text-center">
+        {/* <div className="mt-16 flex flex-col items-center text-center">
           <div className="w-24 h-24 mb-8 relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-20 animate-pulse"></div>
             <img 
@@ -173,12 +160,12 @@ export default function ServicesSection5() {
           </div>
           
           <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-6 italic font-light leading-relaxed">
-            "The coaching I received completely transformed my investor presentations. I went from nervous and unfocused to confident and compelling. The result? We closed our seed round in record time."
+            "Impactful Pitch has played a crucial role in scaling, building out and evolving our go-to-market model. It allows my team to easily stay on top of everything."
           </p>
           
           <h4 className="font-semibold text-gray-900 text-xl">Alon Bartur</h4>
           <p className="text-gray-600">Co-founder & CEO, Dopt</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

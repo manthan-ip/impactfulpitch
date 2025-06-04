@@ -1,16 +1,18 @@
 import React from 'react';
 import StyledButton from '../../components/StyledButton';
+import { useContact } from '../../context/ContactContext';
 
-export default function ServicesSection6() {
+export default function InvestorNetwork() {
+  const { onOpen } = useContact();
   // Network Features
-  const networkFeatures = [
-    "Pre-screened investors",
-    "Industry-specific matches",
-    "One-on-one introductions",
-    "Ongoing relationship management",
-    "Follow-up support",
-    "Pitch preparation assistance"
-  ];
+  // const networkFeatures = [
+  //   "Pre-screened investors",
+  //   "Industry-specific matches",
+  //   "One-on-one introductions",
+  //   "Ongoing relationship management",
+  //   "Follow-up support",
+  //   "Pitch preparation assistance"
+  // ];
 
   // Network Stats
   const networkStats = [
@@ -20,17 +22,12 @@ export default function ServicesSection6() {
   ];
 
   return (
-    <div className="w-full py-16 bg-gradient-to-b from-blue-100 via-indigo-100 to-purple-100 relative overflow-hidden">
-      {/* Subtle texture overlay for continuity */}
-      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+')]"></div>
-      
-      {/* Gradient overlay for added depth */}
-      <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-indigo-500/5 to-purple-500/5"></div>
-      
+    <div className="w-full py-16 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
           <div className="flex flex-col">
+            <div className='flex gap-5 items-center'>
             <div className="w-20 h-20 p-4 bg-white shadow-lg rounded-2xl mb-6 flex items-center justify-center transform hover:rotate-6 transition-transform duration-300">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-full w-full text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -41,16 +38,20 @@ export default function ServicesSection6() {
             </div>
             
             <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-tight">Investor <span className="text-blue-600">Network Access</span></h2>
-            
+            </div>
             <div className="bg-white rounded-full py-2 px-6 shadow-md inline-block mb-6 w-max">
-              <span className="text-gray-700 text-sm font-medium">Exclusive Network of Investors</span>
+              <span className="text-gray-700 text-sm font-medium">Access the Greatest</span>
             </div>
             
             <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-              Gain access to our extensive network of investors who are actively seeking opportunities in companies like yours. Our curated connections ensure you're matched with the right investors who understand your industry and share your vision.
+              Our extensive network of investors spans angel investors, venture catalyst firms, and beyond.
+            </p>
+
+            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+              We facilitate connections with incubators and accelerators, accelerating startup journeys.
             </p>
             
-            <ul className="space-y-3 mb-8">
+            {/* <ul className="space-y-3 mb-8">
               {networkFeatures.map((item, index) => (
                 <li key={index} className="flex items-center text-gray-700">
                   <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mr-3">
@@ -61,25 +62,15 @@ export default function ServicesSection6() {
                   {item}
                 </li>
               ))}
-            </ul>
+            </ul> */}
             
             <div className="flex flex-wrap gap-4">
               <StyledButton 
-                href="#contact" 
+                onClick={onOpen} 
                 variant="primary"
                 size="lg"
               >
-                Access Network
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </StyledButton>
-              <StyledButton 
-                href="#learn-more" 
-                variant="secondary"
-                size="lg"
-              >
-                Learn More
+                Let's Talk
               </StyledButton>
             </div>
           </div>
@@ -170,7 +161,7 @@ export default function ServicesSection6() {
         </div>
         
         {/* Testimonial Section */}
-        <div className="mt-16 flex flex-col items-center text-center">
+        {/* <div className="mt-16 flex flex-col items-center text-center">
           <div className="w-24 h-24 mb-8 relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-20 animate-pulse"></div>
             <img 
@@ -185,13 +176,13 @@ export default function ServicesSection6() {
           </div>
           
           <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-6 italic font-light leading-relaxed">
-            "Through Impactful Pitch's investor network, we connected with the perfect investors who understood our vision. Their investor matching approach saved us months of pitching to the wrong people."
+            "My team loves Impactful Pitch because it's so dynamic. We can splice our data in so many different ways and combinations."
           </p>
           
           <h4 className="font-semibold text-gray-900 text-xl">DeGrasse Schrader</h4>
-          <p className="text-gray-600">Chief of Staff, Pallet</p>
-        </div>
+          <p className="text-gray-600">Chief of Staff, Fallet</p>
+        </div> */}
       </div>
     </div>
   );
-} 
+}
