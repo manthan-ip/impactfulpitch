@@ -1,3 +1,11 @@
+import WiseLife from "../../assets/WiseLife.png"
+import SpeedForce from "../../assets/SpeedForce.png"
+import Zoivane from "../../assets/Zoivane.png"
+import Hoora from "../../assets/Hoora.png"
+import Ring7 from "../../assets/Ring7.png"
+import SneakInn from "../../assets/SneakInn.png"
+import JaipurWatch from "../../assets/JaipurWatch.png"
+
 export default function SharkTank() {
   return (
     <section className="py-8 pt-0 px-8 relative">      
@@ -18,57 +26,24 @@ export default function SharkTank() {
         </div>
 
         {/* Projects Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-20 h-fit">
           {/* Left section - 920+ */}
-          <div className="lg:col-span-2 bg-black text-white rounded-xl p-8 relative overflow-hidden">
-            <div className="z-10 relative">
-              <h3 className="text-7xl font-bold flex items-center">
-                920
-                <span className="text-blue-400 text-5xl">+</span>
-              </h3>
-              <p className="text-gray-300 mt-2">Project finish impactfully</p>
-              
-              <div className="flex mt-32">
-                <div className="flex -space-x-4">
-                  <img src="https://randomuser.me/api/portraits/men/32.jpg" className="w-14 h-14 rounded-full border-2 border-black" alt="Team member" />
-                  <img src="https://randomuser.me/api/portraits/women/44.jpg" className="w-14 h-14 rounded-full border-2 border-black" alt="Team member" />
-                  <img src="https://randomuser.me/api/portraits/men/46.jpg" className="w-14 h-14 rounded-full border-2 border-black" alt="Team member" />
-                  <img src="https://randomuser.me/api/portraits/women/28.jpg" className="w-14 h-14 rounded-full border-2 border-black" alt="Team member" />
-                  <div className="w-14 h-14 rounded-full bg-gray-800 border-2 border-black flex items-center justify-center text-white font-bold text-xl">+</div>
-                </div>
-              </div>
-            </div>
+          <div className="lg:col-span-2 bg-black text-white rounded-xl relative overflow-hidden h-fit">
+            <img src={JaipurWatch} alt="Jaipur Watch" className="w-full"/>
           </div>
           
           {/* Right section - Project examples */}
           <div className="lg:col-span-3 grid grid-cols-3 grid-rows-2 gap-4">
-            <div className="relative rounded-xl overflow-hidden bg-orange-100">
-              <div className="absolute top-3 left-3 px-2 py-1 bg-white/80 rounded-md text-xs font-medium">Tech</div>
-              <img src="https://placehold.co/300x200/orange/white?text=Project" className="w-full h-full object-cover" alt="Tech project" />
-            </div>
-            <div className="relative rounded-xl overflow-hidden bg-green-100">
-              <div className="absolute top-3 left-3 px-2 py-1 bg-white/80 rounded-md text-xs font-medium">Environex</div>
-              <img src="https://placehold.co/300x200/22c55e/white?text=Environex" className="w-full h-full object-cover" alt="Environex project" />
-            </div>
-            <div className="relative rounded-xl overflow-hidden bg-yellow-100">
-              <div className="absolute top-3 left-3 px-2 py-1 bg-white/80 rounded-md text-xs font-medium">Enchanté</div>
-              <img src="https://placehold.co/300x200/8b5cf6/white?text=Enchanté" className="w-full h-full object-cover" alt="Enchanté project" />
-            </div>
-            <div className="relative rounded-xl overflow-hidden bg-purple-100">
-              <div className="absolute top-3 left-3 px-2 py-1 bg-white/80 rounded-md text-xs font-medium">SaaS</div>
-              <img src="https://placehold.co/300x200/64748b/white?text=SaaS" className="w-full h-full object-cover" alt="SaaS project" />
-            </div>
-            <div className="relative rounded-xl overflow-hidden bg-indigo-100">
-              <div className="absolute top-3 left-3 px-2 py-1 bg-white/80 rounded-md text-xs font-medium">MedTech</div>
-              <img src="https://placehold.co/300x200/4f46e5/white?text=MedTech" className="w-full h-full object-cover" alt="MedTech project" />
-            </div>
-            <div className="relative rounded-xl overflow-hidden bg-amber-100">
-              <div className="absolute top-3 left-3 px-2 py-1 bg-white/80 rounded-md text-xs font-medium">Healthcare</div>
-              <img src="https://placehold.co/300x200/f59e0b/white?text=Healthcare" className="w-full h-full object-cover" alt="Healthcare project" />
-            </div>
+            <img src={WiseLife} className="w-full object-cover" alt="WiseLife" />
+            <img src={SpeedForce} className="w-full object-cover" alt="SpeedForce" />
+            <img src={Zoivane} className="w-full object-cover" alt="Zoivane" />
+            <img src={Hoora} className="w-full object-cover" alt="Hoora" />
+            <img src={Ring7} className="w-full object-cover" alt="Ring7" />
+            <img src={SneakInn} className="w-full object-cover" alt="SneakInn" />
           </div>
         </div>
       </div>
     </section>
   );
 }
+

@@ -1,8 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import StyledButton from "../../components/StyledButton";
+import { Link } from "react-router-dom";
+import Algobulls from "../successStoriesPage/backgroundImages/algobulls.png"
+import Stylework from "../successStoriesPage/backgroundImages/stylework.png"
+import Alyf from "../successStoriesPage/backgroundImages/alyf.png"
+// import Hesa from "../successStoriesPage/backgroundImages/hesa.png"
+// import IdealInsurance from "../successStoriesPage/backgroundImages/idealInsurance.png"
+// import KSKT from "../successStoriesPage/backgroundImages/kskt.png"
 
 // Case Study Card Component with hover effects and animations
-function CaseStudyCard({ image, title, description, index, isVisible }) {
+function CaseStudyCard({ image, title, description, index, isVisible, link }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -18,10 +25,11 @@ function CaseStudyCard({ image, title, description, index, isVisible }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      <Link to={link}>
       {/* Card highlight effect on hover */}
-      <div 
-        className={`absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-indigo-500/5 opacity-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : ''}`}
-      ></div>
+      {/* <div 
+        className={`absolute inset-0 bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-indigo-500/5 opacity-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : ''}`}
+      ></div> */}
       
       <div className="h-48 overflow-hidden">
         <img 
@@ -37,10 +45,9 @@ function CaseStudyCard({ image, title, description, index, isVisible }) {
           <div className={`w-2 h-2 rounded-full bg-${color}-500 mr-2 ${isHovered ? 'animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]' : ''}`}></div>
           <span className="text-gray-400 text-sm">5 min read</span>
         </div> */}
-        <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${isHovered ? 'text-blue-200' : 'text-white'}`}>{title}</h3>
-        <p className="text-gray-300 text-sm mb-4 line-clamp-2">{description}</p>
-        {/* <Link to={link} className="inline-block">
-          <div className={`w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 ${
+        <h3 className={`text-xl font-bold mb-3 transition-all duration-500 ${isHovered ? 'bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent' : 'text-white'}`}>{title}</h3>
+        {/* <p className="text-gray-300 text-sm mb-4 line-clamp-2">{description}</p> */}
+        {/* <div className={`w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 ${
             isHovered ? 'bg-blue-700 shadow-xl scale-110' : 'bg-blue-600'
           }`}>
             <svg 
@@ -52,12 +59,47 @@ function CaseStudyCard({ image, title, description, index, isVisible }) {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
-          </div>
-        </Link> */}
+          </div> */}
       </div>
+      </Link>
     </div>
   );
 }
+
+// Case studies data
+export const caseStudies = [
+  {
+    image: Algobulls,
+    title: "AlgoBulls Raises $2 Million in Pre-Series A Funding Led by Venture Catalysts",
+    // description: "We are the top digital marketing agency for branding corp. We offer a full rang engine...",
+    link: "/case-studies/algobulls"
+  },
+  {
+    image: Stylework,
+    title: "Coworking Startup Stylework Raised $2 Mn Funding From Capri Global Holdings, QI Ventures",
+    link: "/case-studies/algobulls"
+  },
+  {
+    image: Alyf,
+    title: "India’s First Holiday Home Fractional Ownership Platform Alyf Raises $1.5 Million In Seed Capital",
+    link: "/case-studies/algobulls"
+  },
+  {
+    image: Alyf,
+    title: "Hesa raises $2.3 Mn in pre-Series A round led by Venture Catalysts",
+    link: "/case-studies/algobulls"
+  },
+  {
+    image: "https://placehold.co/600x400/cccccc/969696?text=Ideal+Insurance",
+    title: "Ideal Insurance raised ₹8 Cr as Pre-Series A Funds",
+    link: "/case-studies/algobulls"
+  },
+  {
+    image: "https://placehold.co/600x400/cccccc/969696?text=KSKT+Team",
+    title: "KSKT Secures $1.3m In A Strategic Mix Of Equity & Debt",
+    link: "/case-studies/algobulls"
+  }
+];
 
 export default function SuccessStories() {
   const [isVisible, setIsVisible] = useState(false);
@@ -87,40 +129,6 @@ export default function SuccessStories() {
     };
   }, []);
   
-  // Case studies data
-  const caseStudies = [
-    {
-      image: "https://placehold.co/600x400/cccccc/969696?text=Algobulls+Team",
-      title: "How Algobulls Raised 2M USD for their Business",
-      description: "We are the top digital marketing agency for branding corp. We offer a full rang engine...",
-    },
-    {
-      image: "https://placehold.co/600x400/cccccc/969696?text=Hesa+Team",
-      title: "Hesa: A leading startup got 1.5M USD of Funding",
-      description: "Working with this digital marketing agency has been a true partnership. They have tak...",
-    },
-    {
-      image: "https://placehold.co/600x400/cccccc/969696?text=Ideal+Insurance",
-      title: "How Ideal Insurance is Changing The Game",
-      description: "What sets this digital marketing agency apart is their commitment to transparency and...",
-    },
-    {
-      image: "https://placehold.co/600x400/cccccc/969696?text=BrandX+Team",
-      title: "How BrandX Scaled their company to over US$ 200M and Coming for More",
-      description: "We are the top digital marketing agency for branding corp. We offer a full rang engine...",
-    },
-    {
-      image: "https://placehold.co/600x400/cccccc/969696?text=Startup+Trends",
-      title: "The Latest Trends and Strategies in the Startup Industry",
-      description: "Working with this digital marketing agency has been a true partnership. They have tak...",
-    },
-    {
-      image: "https://placehold.co/600x400/cccccc/969696?text=ROI+Expertise",
-      title: "Maximizing ROI with the Expertise of a Digital Marketing Agency",
-      description: "What sets this digital marketing agency apart is their commitment to transparency and...",
-    }
-  ];
-
   // Client avatars data
   const clientAvatars = [
     "https://randomuser.me/api/portraits/men/32.jpg",
@@ -147,7 +155,7 @@ export default function SuccessStories() {
       className="py-16 pt-8 pb-24 px-8 relative overflow-hidden"
     >      
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header with animated underline */}
+        {/* Section Header */}
         <div 
           className={`text-center mb-16 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -204,7 +212,7 @@ export default function SuccessStories() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <div className="flex -space-x-2 mb-4">
+          {/* <div className="flex -space-x-2 mb-4">
             {clientAvatars.map((avatar, index) => (
               <div 
                 key={index}
@@ -235,13 +243,12 @@ export default function SuccessStories() {
                 )}
               </div>
             ))}
-          </div>
-          <p className="text-gray-600 mb-8 text-center">
+          </div> */}
+          <p className="text-gray-600 mb-4 text-center">
             Be among the innovators turning ambition into achievement— with <span className="text-blue-700 font-bold">Impactful Pitch</span>
           </p>
           <StyledButton 
             to="/success-stories"
-            variant="primary"
             size="md"
           >
             Browse all
@@ -250,4 +257,4 @@ export default function SuccessStories() {
       </div>
     </section>
   );
-} 
+}

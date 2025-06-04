@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo-white.png";
 import StyledButton from './StyledButton';
+import SocialIcons from './SocialIcons';
 
 export default function Footer() {
     const [isVisible, setIsVisible] = useState(false);
@@ -46,15 +47,9 @@ export default function Footer() {
     return (
         <footer 
             ref={footerRef} 
-            className={`bg-gradient-to-b from-gray-800 via-gray-900 to-black text-gray-300 py-20 relative overflow-hidden`}
+            className={`bg-gradient-to-b from-gray-800 via-gray-900 to-black text-gray-300 pt-15 pb-10 relative overflow-hidden`}
             aria-labelledby="footer-heading"
         >
-            <h2 id="footer-heading" className="sr-only">Footer</h2>
-            
-            {/* Decorative elements */}
-            <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-blue-900/30 to-transparent rounded-full blur-3xl opacity-40"></div>
-            <div className="absolute bottom-0 right-0 w-1/4 h-1/2 bg-gradient-to-tl from-indigo-900/30 to-transparent rounded-full blur-3xl opacity-40"></div>
-            
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     
@@ -64,30 +59,15 @@ export default function Footer() {
                             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                         }`}
                     >
-                        <Link to="/" className="inline-block mb-6">
-                            <img src={logo} alt="ImpactfulPitch Logo" className="h-10 w-auto" />
+                        <Link to="/" className="inline-block mb-2">
+                            <img src={logo} alt="ImpactfulPitch Logo" className="h-11 w-auto" />
                         </Link>
                         <p className="text-gray-400 mb-6 leading-relaxed max-w-sm">
                             Empowering startups with AI-driven pitch decks and strategic insights for successful fundraising.
                         </p>
-                        <div className="flex space-x-4">
+                        <div className="flex items-center">
                             {/* Social media links - with proper accessibility */}
-                            {[
-                                { name: 'Twitter', icon: 'M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z', href: '#twitter' },
-                                { name: 'LinkedIn', icon: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 2a2 2 0 1 1-2 2 2 2 0 0 1 2-2z', href: '#linkedin' },
-                                { name: 'Instagram', icon: 'M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01 M7.5 2h9a5 5 0 0 1 5 5v9a5 5 0 0 1-5 5h-9a5 5 0 0 1-5-5v-9a5 5 0 0 1 5-5z', href: '#instagram' }
-                            ].map(social => (
-                                <a 
-                                    key={social.name}
-                                    href={social.href} 
-                                    className="text-gray-400 hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-                                    aria-label={`Follow us on ${social.name}`}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d={social.icon}></path>
-                                    </svg>
-                                </a>
-                            ))}
+                            <SocialIcons/>
                         </div>
                     </div>
 
@@ -100,7 +80,7 @@ export default function Footer() {
                         <div>
                             <h4 className="text-white font-semibold mb-4 tracking-wider uppercase text-sm">Product</h4>
                             <ul className="space-y-3">
-                                {['Features', 'Pricing', 'Templates', 'Integrations'].map(item => (
+                                {['Features', 'Integrations'].map(item => (
                                     <li key={item} className="transform transition-all" style={{ 
                                         transitionDelay: `${300 + (50 * Math.random())}ms`,
                                         opacity: isVisible ? 1 : 0,
@@ -116,7 +96,7 @@ export default function Footer() {
                         <div>
                             <h4 className="text-white font-semibold mb-4 tracking-wider uppercase text-sm">Company</h4>
                             <ul className="space-y-3">
-                                {['About Us', 'Careers', 'Blog', 'Contact'].map(item => (
+                                {['About', 'Blog', 'Contact'].map(item => (
                                     <li key={item} className="transform transition-all" style={{ 
                                         transitionDelay: `${450 + (50 * Math.random())}ms`,
                                         opacity: isVisible ? 1 : 0,
@@ -132,7 +112,7 @@ export default function Footer() {
                         <div>
                             <h4 className="text-white font-semibold mb-4 tracking-wider uppercase text-sm">Resources</h4>
                             <ul className="space-y-3">
-                                {['Case Studies', 'Guides', 'Support Center', 'API Docs'].map(item => (
+                                {['Case Studies', 'Guides', 'Support Center'].map(item => (
                                     <li key={item} className="transform transition-all" style={{ 
                                         transitionDelay: `${600 + (50 * Math.random())}ms`,
                                         opacity: isVisible ? 1 : 0,
@@ -180,9 +160,8 @@ export default function Footer() {
                                 </div>
                                 <StyledButton 
                                     type="submit" 
-                                    variant="primary"
                                     size="md" 
-                                    className="w-full sm:w-auto shadow-md shadow-blue-900/30 hover:shadow-blue-900/50"
+                                    className="w-full sm:w-auto shadow-blue-900/30 hover:shadow-blue-900/50 hover:bg-gray-200"
                                 >
                                     Subscribe
                                 </StyledButton>

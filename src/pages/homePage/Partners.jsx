@@ -1,35 +1,32 @@
-import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 
-// Example partner logos - replace with actual partner data
+// Import all partner logos
+const importPartnerLogos = () => {
+  const logos = {};
+  const logoFiles = Array.from({ length: 12 }, (_, i) => i + 1); // Assuming 12 partner logos
+  
+  logoFiles.forEach(num => {
+    const formattedNum = String(num).padStart(2, '0');
+    logos[`logo${num-1}`] = new URL(`./PartnersLogos/Partners-${formattedNum}.png`, import.meta.url).href;
+  });
+
+  return logos;
+};
+
+const logos = importPartnerLogos();
+
+// Clean, professional partner data with actual logos
 const partnerLogos = [
-    // Row 1
-    [
-        { name: "500 Startups", image: "https://placehold.co/200x80/e2e8f0/333333?text=500+Startups" },
-        { name: "Y Combinator", image: "https://placehold.co/200x80/e2e8f0/333333?text=Y+Combinator" },
-        { name: "Techstars", image: "https://placehold.co/200x80/e2e8f0/333333?text=Techstars" },
-        { name: "Sequoia", image: "https://placehold.co/200x80/e2e8f0/333333?text=Sequoia" },
-        { name: "Accel", image: "https://placehold.co/200x80/e2e8f0/333333?text=Accel" },
-        { name: "Lightspeed", image: "https://placehold.co/200x80/e2e8f0/333333?text=Lightspeed" }
-    ],
-    // Row 2
-    [
-        { name: "Matrix Partners", image: "https://placehold.co/200x80/e2e8f0/333333?text=Matrix+Partners" },
-        { name: "Elevation Capital", image: "https://placehold.co/200x80/e2e8f0/333333?text=Elevation" },
-        { name: "Nexus VP", image: "https://placehold.co/200x80/e2e8f0/333333?text=Nexus+VP" },
-        { name: "Tiger Global", image: "https://placehold.co/200x80/e2e8f0/333333?text=Tiger+Global" },
-        { name: "SoftBank", image: "https://placehold.co/200x80/e2e8f0/333333?text=SoftBank" },
-        { name: "Bessemer", image: "https://placehold.co/200x80/e2e8f0/333333?text=Bessemer" }
-    ],
-    // Row 3
-    [
-        { name: "Andreessen", image: "https://placehold.co/200x80/e2e8f0/333333?text=Andreessen" },
-        { name: "Peak XV", image: "https://placehold.co/200x80/e2e8f0/333333?text=Peak+XV" },
-        { name: "Blume", image: "https://placehold.co/200x80/e2e8f0/333333?text=Blume" },
-        { name: "Kalaari", image: "https://placehold.co/200x80/e2e8f0/333333?text=Kalaari" },
-        { name: "3State", image: "https://placehold.co/200x80/e2e8f0/333333?text=3State" },
-        { name: "Chiratae", image: "https://placehold.co/200x80/e2e8f0/333333?text=Chiratae" }
-    ]
+  // Row 1 - first 6 logos
+  Array.from({ length: 6 }, (_, i) => ({
+    name: `Partner ${i + 1}`,
+    image: logos[`logo${i}`]
+  })),
+  // Row 2 - remaining 6 logos
+  Array.from({ length: 6 }, (_, i) => ({
+    name: `Partner ${i + 7}`,
+    image: logos[`logo${i + 6}`]
+  }))
 ];
 
 const ScrollingRow = ({ logos, speed = 1.2 }) => {
@@ -91,7 +88,7 @@ const ScrollingRow = ({ logos, speed = 1.2 }) => {
                                 <img
                                     src={logo.image}
                                     alt={logo.name}
-                                    className="w-full h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                                    className="w-full h-12 object-contain transition-all duration-300"
                                 />
                             </div>
                         </div>
@@ -108,24 +105,7 @@ const ScrollingRow = ({ logos, speed = 1.2 }) => {
                                 <img
                                     src={logo.image}
                                     alt={logo.name}
-                                    className="w-full h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                ))}
-                {/* Third set to ensure smooth transition */}
-                {logos.map((logo, index) => (
-                    <div
-                        key={`triple-${index}`}
-                        className="flex-shrink-0 w-[220px]"
-                    >
-                        <div className="h-24 flex items-center justify-center px-8 py-4 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out hover:-translate-y-0.5">
-                            <div className="text-center">
-                                <img
-                                    src={logo.image}
-                                    alt={logo.name}
-                                    className="w-full h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                                    className="w-full h-12 object-contain transition-all duration-300"
                                 />
                             </div>
                         </div>
@@ -179,7 +159,7 @@ export default function Partners() {
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
                         Ecosystem Partners
                     </h2>
-                    <p className="text-gray-600 max-w-3xl mx-auto">
+                    <p className="text-gray-600 max-w-4xl mx-auto">
                         Collaborating with leading players in the startup ecosystem to provide comprehensive support and opportunities
                     </p>
                 </div>
@@ -199,7 +179,6 @@ export default function Partners() {
                     <div className="space-y-10 py-8">
                         <ScrollingRow logos={partnerLogos[0]} speed={1.5} />
                         <ScrollingRow logos={partnerLogos[1]} speed={1.2} />
-                        <ScrollingRow logos={partnerLogos[2]} speed={1.3} />
                     </div>
                 </div>
 

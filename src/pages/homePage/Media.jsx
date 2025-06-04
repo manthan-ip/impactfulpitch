@@ -1,42 +1,58 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import StyledButton from '../../components/StyledButton';
 
-// Clean, professional media data
+// Import all media logos
+const importMediaLogos = () => {
+  const logos = {};
+  const logoFiles = Array.from({ length: 50 }, (_, i) => i + 1);
+  
+  logoFiles.forEach(num => {
+    // Format number to have leading zeros (01, 02, etc.)
+    const formattedNum = String(num).padStart(2, '0');
+    logos[`logo${num-1}`] = new URL(`./MediaLogos/Our Media Recognitions and Coverages Logos-${formattedNum}.png`, import.meta.url).href;
+  });
+
+  return logos;
+};
+
+const logos = importMediaLogos();
+
+// Clean, professional media data with actual logos
 const mediaLogos = [
-  [
-    { name: 'TechCrunch', displayName: 'TechCrunch', link: '#' },
-    { name: 'Forbes', displayName: 'Forbes', link: '#' },
-    { name: 'Economic Times', displayName: 'Economic Times', link: '#' },
-    { name: 'YourStory', displayName: 'YourStory', link: '#' },
-    { name: 'Inc42', displayName: 'Inc42', link: '#' },
-    { name: 'Business Standard', displayName: 'Business Standard', link: '#' }
-  ],
-  [
-    { name: 'Mint', displayName: 'Mint', link: '#' },
-    { name: 'Business Insider', displayName: 'Business Insider', link: '#' },
-    { name: 'VCCircle', displayName: 'VCCircle', link: '#' },
-    { name: 'Entrepreneur', displayName: 'Entrepreneur', link: '#' },
-    { name: 'The Hindu', displayName: 'The Hindu', link: '#' },
-    { name: 'Deccan Herald', displayName: 'Deccan Herald', link: '#' }
-  ]
+  // Row 1 - first 25 logos
+  Array.from({ length: 25 }, (_, i) => ({
+    name: `Media ${i + 1}`,
+    displayName: `Media ${i + 1}`,
+    image: logos[`logo${i}`],
+    link: '#'
+  })),
+  // Row 2 - remaining 25 logos
+  Array.from({ length: 25 }, (_, i) => ({
+    name: `Media ${i + 26}`,
+    displayName: `Media ${i + 26}`,
+    image: logos[`logo${i + 25}`],
+    link: '#'
+  }))
 ];
 
 const LogoCard = ({ logo }) => {
   return (
-    <div className="flex-shrink-0 w-[220px]">
+    <div className="flex-shrink-0 w-[180px]">
       <a
         href={logo.link}
         target="_blank"
         rel="noopener noreferrer"
         className="block group"
       >
-        <div className="h-24 flex items-center justify-center px-8 py-4 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 ease-out hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] hover:-translate-y-0.5">
-          <div className="text-center">
-            <div className="text-base font-medium text-gray-800 group-hover:text-gray-900 transition-colors duration-300">
-              {logo.displayName}
-            </div>
-          </div>
-        </div>
+        <img 
+          src={logo.image}
+          alt={logo.displayName}
+          className="h-16 w-auto object-contain transition-all duration-300 hover:scale-110 hover:shadow-lg filter drop-shadow-md"
+          onError={(e) => {
+            console.error(`Failed to load image: ${logo.image}`);
+          }}
+        />
       </a>
     </div>
   );
@@ -88,7 +104,7 @@ const ScrollingRow = ({ logos, speed = 0.3 }) => {
     >
       <div 
         ref={containerRef}
-        className="flex gap-8 will-change-transform"
+        className="flex gap-8"
       >
         {/* First set */}
         {logos.map((logo, index) => (
@@ -171,8 +187,8 @@ export default function Media() {
 
           {/* Logo rows with increased spacing */}
           <div className="space-y-10 py-8">
-            <ScrollingRow logos={mediaLogos[0]} speed={1.5} />
-            <ScrollingRow logos={mediaLogos[1]} speed={1.2} />
+            <ScrollingRow logos={mediaLogos[0]} speed={2.5} />
+            <ScrollingRow logos={mediaLogos[1]} speed={2.2} />
           </div>
         </div>
 
@@ -198,16 +214,16 @@ export default function Media() {
             </div>
 
             <blockquote className="text-xl text-gray-700 font-medium italic mb-8">
-              "Impactful Pitch has revolutionized the way startups approach investor presentations. Their expertise and innovative strategies are unmatched in the industry."
+              "Founded in 2022 by Nikhil Parmar, Impactful Pitch is on a mission to empower 1 million entrepreneurs to create solutions that impact 1 billion lives."
             </blockquote>
 
             <div className="flex flex-col items-center gap-6">
               {/* Featured badges with enhanced styling */}
               <div className="flex items-center justify-center gap-3 text-sm text-gray-600">
                 <span className="font-medium">As featured in</span>
-                <div className="px-4 py-1.5 rounded-full bg-gradient-to-r from-gray-100 to-gray-50 text-gray-800 font-medium shadow-sm hover:shadow-md transition-all duration-300">Forbes</div>
-                <div className="px-4 py-1.5 rounded-full bg-gradient-to-r from-gray-100 to-gray-50 text-gray-800 font-medium shadow-sm hover:shadow-md transition-all duration-300">TechCrunch</div>
-                <div className="px-4 py-1.5 rounded-full bg-gradient-to-r from-gray-100 to-gray-50 text-gray-800 font-medium shadow-sm hover:shadow-md transition-all duration-300">Economic Times</div>
+                <Link to="https://www.tice.news/tice-dispatch/startup-club-india-tice/from-vision-to-venture-how-impactful-pitch-is-helping-startups-raise-millions-8838236"><div className="px-4 py-1.5 rounded-full bg-gradient-to-r from-gray-100 to-gray-50 text-gray-800 font-medium shadow-sm hover:shadow-md transition-all duration-300">Tice News</div></Link>
+                {/* <div className="px-4 py-1.5 rounded-full bg-gradient-to-r from-gray-100 to-gray-50 text-gray-800 font-medium shadow-sm hover:shadow-md transition-all duration-300">TechCrunch</div>
+                <div className="px-4 py-1.5 rounded-full bg-gradient-to-r from-gray-100 to-gray-50 text-gray-800 font-medium shadow-sm hover:shadow-md transition-all duration-300">Economic Times</div> */}
               </div>
 
               {/* Enhanced CTA Section */}
@@ -222,7 +238,7 @@ export default function Media() {
                   >
                     Start Crafting Your Story
                   </StyledButton>
-                  <p className="mt-3 text-sm text-gray-500">Join 500+ funded startups who trust us</p>
+                  {/* <p className="mt-3 text-sm text-gray-500">Join 500+ funded startups who trust us</p> */}
                 </div>
               </div>
             </div>
@@ -232,12 +248,6 @@ export default function Media() {
 
       {/* Bottom fade effect */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
-
-      <style jsx>{`
-        .will-change-transform {
-          will-change: transform;
-        }
-      `}</style>
     </section>
   );
 }

@@ -7,6 +7,8 @@ import SuccessStories from './SuccessStories';
 import Partners from './Partners';
 import ManBehind from './ManBehind';
 import Media from './Media';
+import BeforeAfterSlides from './BeforeAfterSlides';
+import StartupShowcase from './StartupShowcase';
 
 export default function Home() {
     return (
@@ -15,7 +17,9 @@ export default function Home() {
             <div className="relative z-10 pt-16 backdrop-blur-[1px]"> 
                 <HeroSection />
                 <SharkTank />
+                <StartupShowcase />
                 <ServiceCards />
+                <BeforeAfterSlides />
                 <Metrics />
                 <Clients />
                 <SuccessStories />
